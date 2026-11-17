@@ -6,9 +6,13 @@ El siguiente repositorio contiene los archivos con la configuración necesaria p
 * Archivo .pem del par clave utilizado _(recomendable dentro de la carpeta terraform)_
 
 ## Levantar el servidor y desplegar la API
-Desde la carpeta terraform, comenzar con la ejecución de los siguientes comandos de Terraform para levantar el servidor y desplegar la API:
+Desde la carpeta terraform, comenzar con la inicialización y planeación ejecutando los siguientes comandos de Terraform:
 ```
 terraform init
+terraform plan
+```
+Para levantar el servidor y desplegar la API, aplique el plan establecido ejecutando el siguiente comando de terraform:
+```
 terraform apply -auto-approve
 ```
 ## Verificación con Ansible
