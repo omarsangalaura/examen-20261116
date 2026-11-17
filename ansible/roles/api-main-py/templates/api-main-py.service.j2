@@ -9,6 +9,9 @@ WorkingDirectory={{ app_dir }}
 Environment="PATH={{ app_dir }}/venv/bin"
 ExecStart={{ app_dir }}/venv/bin/python3 {{ app_dir }}/{{ main_file }}
 Restart=always
+RestartSec=10
+StandartOutput=file:/var/log/api-main-py.log
+StandartError=file:/var/log/api-main-py-error.log
 
 [Install]
 WantedBy=multi-user.target
