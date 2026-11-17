@@ -4,6 +4,8 @@ El siguiente repositorio contiene los archivos con la configuración necesaria p
 ## Preparación previa
 * Configuración local de terraform para el acceso a AWS
 * Archivo .pem del par clave utilizado _(recomendable dentro de la carpeta terraform)_
+* Actualizar el archivo **inventario_ini.sh** en su última linea para apuntar al archivo .pen utilizado
+* Otorgar permisos para la ejecución del archivo **inventario_ini.sh** dentro de la carpeta ansible (chmod 700 o 750)
 
 ## Levantar el servidor y desplegar la API
 Desde la carpeta terraform, comenzar con la inicialización y planeación ejecutando los siguientes comandos de Terraform:
