@@ -1,0 +1,12 @@
+- name: Desplegando servicio de API
+  hosts: all
+  become: yes
+  remote_user: ubuntu
+  vars:
+    app_name: ApiMainPy
+    app_user: api-main-py
+    app_dir: /opt/api-main-py
+    main_file: main.py
+    service_name: api-main-py
+  roles:
+    - api-main-py

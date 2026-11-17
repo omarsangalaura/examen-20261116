@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 locals {
-    ruta_private_key = "./ApiMainPy.pem"
+    ruta_private_key = abspath("${path.module}/ApiMainPy.pem")
     nombre_key = "ApiMainPy"
     usuario_ssh = "ubuntu"
 }
@@ -26,5 +26,21 @@ resource "aws_instance" "api_main_py" {
   key_name = local.nombre_key
   tags = {
     Name = "api_main_py_instance"
+  }
+
+  provisioner "remote-exec" {
+    inline = ["echo 'Esperando conexión SSH en ${self.public_ip}'"]
+    connection {
+        type = "ssh"
+        user = local.usuario_ssh
+        private_key = file(local.ruta_private_key)
+        host = self.public_ip
+        timeout = "5m"
+    }
+  }
+
+  provisioner "local-exec" {
+    working_dir = "${path.module}/../ansible"
+    command = "ansible-playbook -i ${self.public_ip}, --private-key ${local.ruta_private_key} main.yml"
   }
 }
